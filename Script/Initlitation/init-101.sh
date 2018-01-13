@@ -17,3 +17,5 @@ cd $repoName
 mkdir -p $buildFolder
 cd $buildFolder
 git clone --progress -b gh-pages $fullGitHttpUrl . >> "../../$logFile" 2>&1
+
+# build command
