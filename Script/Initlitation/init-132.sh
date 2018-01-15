@@ -1,7 +1,7 @@
 #!/bin/bash
 
 settingFile=../setting.conf
-logFile=result
+logFile=result.log
 
 . $settingFile
 

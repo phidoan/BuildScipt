@@ -1,17 +1,21 @@
 #!/bin/bash
 
-settingFile=.../setting.conf
-logFile=result
+settingFile=../setting.conf
+logFile=result.log
 
 . $settingFile
+. ../chekSystem.sh
 
-fullGitHttpUrl="${gitHttpUrl:0:8}$username:$password@${gitHttpUrl:8}"
-repoNameWithDotGit=`basename "$fullGitHttpUrl"`
-repoName="${repoNameWithDotGit:0:-4}"
+FULL_GIT_HTTP_URL="${GIT_HTTP_URL:0:8}$USERNAME:$PASSWORD@${GIT_HTTP_URL:8}"
+REPO_NAME_WITH_DOT_GIT=`basename "$FULL_GIT_HTTP_URL"`
+REPO_NAME="${REPO_NAME_WITH_DOT_GIT:0:-4}"
+currentFolder=`pwd`
+
 
 cd "$repoName/$buildFolder"
 
-git pull origin gh-pages -s recursive -X ours > "../../$logFile" 2>&1
-git add . >> "../../$logFile" 2>&1
-git commit -m "%datetime%" >> "../../$logFile" 2>&1
-git push origin HEAD:gh-pages >> "../../$logFile" 2>&1
+
+git pull origin gh-pages -s recursive -X ours > "$currentFolder/log/$1/$logFile" 2>&1
+git add . >> "$currentFolder/log/$1/$logFile" 2>&1
+git commit -m "%datetime%" >> "$currentFolder/log/$1/$logFile" 2>&1
+git push origin HEAD:gh-pages >> "$currentFolder/log/$1/$logFile" 2>&1
