@@ -1,17 +1,19 @@
 #!/bin/bash
-settingFile=../setting.conf
+currentFolder=`pwd`
+previousFolder="${currentFolder:0:-15}"
+settingFile=$previousFolder/setting.conf
 logFile=result.log
 
 # read file setting.conf
 . $settingFile
-. ../checkSystem.sh
+. $previousFolder/checkSystem.sh
 
 FULL_GIT_HTTP_URL_CMS="${FULL_GIT_HTTP_URL_CMS:0:8}$USERNAME:$PASSWORD@${FULL_GIT_HTTP_URL_CMS:8}"
 REPO_NAME_WITH_DOT_GIT=`basename "$FULL_GIT_HTTP_URL_CMS"`
 REPO_NAME="${REPO_NAME_WITH_DOT_GIT:0:-4}"
 
 #current folder which contain this script.
-currentFolder=`pwd`
+
 
 #create folder log. The subfolder is by userID.
 mkdir -p log
