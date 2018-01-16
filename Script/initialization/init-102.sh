@@ -4,7 +4,7 @@ settingFile=../setting.conf
 logFile=result.log
 
 . $settingFile
-. ../chekSystem.sh
+. ../checkSystem.sh
 
 FULL_GIT_HTTP_URL="${GIT_HTTP_URL:0:8}$USERNAME:$PASSWORD@${GIT_HTTP_URL:8}"
 REPO_NAME_WITH_DOT_GIT=`basename "$FULL_GIT_HTTP_URL"`
