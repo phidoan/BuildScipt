@@ -15,7 +15,7 @@ git --version
 check_status
 
 #curl -V
-check_status
+#check_status
 
 
 #nodejs -v
