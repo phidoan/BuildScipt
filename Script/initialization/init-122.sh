@@ -1,6 +1,6 @@
 #!/bin/bash
 currentFolder=`pwd`
-previousFolder="${currentFolder:0:-15}"
+previousFolder=$currentFolder
 settingFile=$previousFolder/setting.conf
 logFile=result.log
 
