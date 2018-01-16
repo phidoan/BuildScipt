@@ -21,5 +21,4 @@ git clone --progress -b gh-pages $FULL_GIT_HTTP_URL_CMS >> "$USER_LOG_PATH/$logF
 if [ $? -eq 128 ]; then
   git pull >> "$USER_LOG_PATH/$logFile" 2>&1
 fi
-check_status
 # build command if the build standard haven't builded yet.
