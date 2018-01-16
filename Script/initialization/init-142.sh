@@ -4,21 +4,28 @@ logFile=result.log
 
 # read file setting.conf
 . $settingFile
-echo $gitHttpUrl
-exit 0
+. ../checkSystem.sh
+
+FULL_GIT_HTTP_URL_APILOOKUP="${FULL_GIT_HTTP_URL_APILOOKUP:0:8}$USERNAME:$PASSWORD@${FULL_GIT_HTTP_URL_APILOOKUP:8}"
+REPO_NAME_WITH_DOT_GIT=`basename "$FULL_GIT_HTTP_URL_APILOOKUP"`
+REPO_NAME="${REPO_NAME_WITH_DOT_GIT:0:-4}"
+
+#current folder which contain this script.
+currentFolder=`pwd`
+
+#create folder log. The subfolder is by userID.
+mkdir -p log
+cd log
+#create subfolder by userID
+mkdir -p $1
 
 # call api to get docker file.
-curl -I -X GET http://localhost:8888/demo-rest-jersey-spring/podcasts/1
+git clone --progress -b master $FULL_GIT_HTTP_URL_APILOOKUP >> "$currentFolder/log/$1/$logFile" 2>&1
 
-# get dockerfile name.
-dockerFileName = ''
+#build system
+npm install
 
-cd $buildFolder
-
-# build docker container in current location.
-docker build -t 'websiteCustomer' .
-
-# docker run . waiting for api and command run.
+nodejs .
 
 
 

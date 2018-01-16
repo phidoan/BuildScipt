@@ -3,7 +3,7 @@
 settingFile=../setting.conf
 logFile=result.log
 
-. ../chekSystem.sh
+. ../checkSystem.sh
 . $settingFile
 
 FULL_GIT_HTTP_URL="${GIT_HTTP_URL:0:8}$USERNAME:$PASSWORD@${GIT_HTTP_URL:8}"
@@ -27,7 +27,8 @@ cd $repoName
 # create and clone gh-pages branch
 mkdir -p $buildFolder
 cd $buildFolder
-git clone --progress -b gh-pages $FULL_GIT_HTTP_URL . >> "$currentFolder/log/$1/$logFile" 2>&1
+git clone --progress -b gh-pages $FULL_GIT_HTTP_URL >> "$currentFolder/log/$1/$logFile" 2>&1
 
 # build command
+
 
