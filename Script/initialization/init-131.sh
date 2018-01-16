@@ -1,38 +1,32 @@
 #!/bin/bash
-
-settingFile=../setting.conf
+settingFile=$SCRIPT_FOLDER_PATH/setting.conf
 logFile=result.log
+USER_ID=$1
 
 . $settingFile
-. ../checkSystem.sh
+. $SCRIPT_FOLDER_PATH/checkSystem.sh
 
 FULL_GIT_HTTP_URL="${GIT_HTTP_URL:0:8}$USERNAME:$PASSWORD@${GIT_HTTP_URL:8}"
 REPO_NAME_WITH_DOT_GIT=`basename "$FULL_GIT_HTTP_URL"`
 REPO_NAME="${REPO_NAME_WITH_DOT_GIT:0:-4}"
 
-#current folder which contain this script.
-currentFolder=`pwd`
+#create folder log
+USER_LOG_PATH=$SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/log/$USER_ID
+mkdir -p $USER_LOG_PATH
 
-#create folder log. The subfolder is by userID.
-mkdir -p log
-cd log
-#create subfolder by userID
-USER_ID=$1
-mkdir -p $USER_ID
-
-cd $currentFolder
+cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE
 # clone repo
-git clone --progress $FULL_GIT_HTTP_URL >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
+git clone --progress $FULL_GIT_HTTP_URL >> "$USER_LOG_PATH/$logFile" 2>&1
 if [ $? -eq 128 ]; then
-  git pull >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
+  git pull >> "$USER_LOG_PATH/$logFile" 2>&1
 fi
 cd $repoName
 
 # create and clone gh-pages branch
-mkdir -p $buildFolder
-cd $buildFolder
-git clone --progress -b gh-pages $FULL_GIT_HTTP_URL >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
+mkdir -p cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$buildFolder
+cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$buildFolder
+git clone --progress -b gh-pages $FULL_GIT_HTTP_URL >> "$USER_LOG_PATH/$logFile" 2>&1
 if [ $? -eq 128 ]; then
-  git pull  >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
+  git pull  >> "$USER_LOG_PATH/$logFile" 2>&1
 fi
 check_status
