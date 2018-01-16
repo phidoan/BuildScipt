@@ -17,6 +17,9 @@ check_status
 curl -V
 check_status
 
+npm -version
+check_status
+
 if [ $2 -gt 0 ]; then
    docker version
    check_status

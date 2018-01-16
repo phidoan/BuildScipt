@@ -19,13 +19,21 @@ cd log
 #create subfolder by userID
 mkdir -p $1
 
+cd $currentFolder
 # call api to get docker file.
 git clone --progress -b master $FULL_GIT_HTTP_URL_APILOOKUP >> "$currentFolder/log/$1/$logFile" 2>&1
+if [ $? -eq 128 ]; then
+  git pull
+fi
+check_status
 
+cd $REPO_NAME/backend
 #build system
-npm install
+npm install >> "$currentFolder/log/$1/$logFile" 2>&1
+check_status
 
 nodejs .
+check_status
 
 
 
