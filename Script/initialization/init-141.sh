@@ -2,23 +2,36 @@
 settingFile=../setting.conf
 logFile=result.log
 
-. ../checkSystem.sh
+# read file setting.conf
 . $settingFile
+. ../checkSystem.sh
 
-GIT_URL_141="https://github.com/vinaas/easyquiztest.git"
-REPO_NAME_WITH_DOT_GIT=`basename "$GIT_URL_141"`
+FULL_GIT_HTTP_URL_APILOOKUP="${FULL_GIT_HTTP_URL_APILOOKUP:0:8}$USERNAME:$PASSWORD@${FULL_GIT_HTTP_URL_APILOOKUP:8}"
+REPO_NAME_WITH_DOT_GIT=`basename "$FULL_GIT_HTTP_URL_APILOOKUP"`
 REPO_NAME="${REPO_NAME_WITH_DOT_GIT:0:-4}"
-USER_ID=$1
+
+#current folder which contain this script.
 currentFolder=`pwd`
 
 #create folder log. The subfolder is by userID.
-mkdir -p "$currentFolder/log/$USER_ID"
+mkdir -p log
+cd log
+#create subfolder by userID
+USER_ID=$1
+mkdir -p $USER_ID
 
-# clone easy backend
-git clone --progress $GIT_URL_141 > "$currentFolder/log/$USER_ID/$logFile" 2>&1
+cd $currentFolder
+# call api to get docker file.
+git clone --progress -b master $FULL_GIT_HTTP_URL_APILOOKUP >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
+if [ $? -eq 128 ]; then
+  git pull
+fi
 check_status
 
-cd "$REPO_NAME/backend"
-npm install
+cd $REPO_NAME/backend
+#build system
+npm install >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
+check_status
+
 nodejs .
 check_status

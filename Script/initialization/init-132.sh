@@ -17,21 +17,22 @@ currentFolder=`pwd`
 mkdir -p log
 cd log
 #create subfolder by userID
-mkdir -p $1
+USER_ID=$1
+mkdir -p $USER_ID
 
 cd $currentFolder
 # clone repo
-git clone --progress $FULL_GIT_HTTP_URL >> "$currentFolder/log/$1/$logFile" 2>&1
+git clone --progress $FULL_GIT_HTTP_URL >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
 if [ $? -eq 128 ]; then
-  git pull >> "$currentFolder/log/$1/$logFile" 2>&1
+  git pull >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
 fi
 cd $repoName
 
 # create and clone gh-pages branch
 mkdir -p $buildFolder
 cd $buildFolder
-git clone --progress -b gh-pages $FULL_GIT_HTTP_URL >> "$currentFolder/log/$1/$logFile" 2>&1
+git clone --progress -b gh-pages $FULL_GIT_HTTP_URL >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
 if [ $? -eq 128 ]; then
-  git pull  >> "$currentFolder/log/$1/$logFile" 2>&1
+  git pull  >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
 fi
 check_status

@@ -17,11 +17,12 @@ currentFolder=`pwd`
 mkdir -p log
 cd log
 #create subfolder by userID
-mkdir -p $1
+USER_ID=$1
+mkdir -p $USER_ID
 
 cd $currentFolder
 # call api to get docker file.
-git clone --progress -b master $FULL_GIT_HTTP_URL_APILOOKUP >> "$currentFolder/log/$1/$logFile" 2>&1
+git clone --progress -b master $FULL_GIT_HTTP_URL_APILOOKUP >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
 if [ $? -eq 128 ]; then
   git pull
 fi
@@ -29,7 +30,7 @@ check_status
 
 cd $REPO_NAME/backend
 #build system
-npm install >> "$currentFolder/log/$1/$logFile" 2>&1
+npm install >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
 check_status
 
 nodejs .

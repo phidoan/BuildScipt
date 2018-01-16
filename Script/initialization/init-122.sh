@@ -17,13 +17,14 @@ currentFolder=`pwd`
 mkdir -p log
 cd log
 #create subfolder by userID
-mkdir -p $1
+USER_ID=$1
+mkdir -p $USER_ID
 
 
 cd $currentFolder
-git clone --progress -b gh-pages $FULL_GIT_HTTP_URL_CMS >> "$currentFolder/log/$1/$logFile" 2>&1
+git clone --progress -b gh-pages $FULL_GIT_HTTP_URL_CMS >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
 if [ $? -eq 128 ]; then
-  git pull >> "$currentFolder/log/$1/$logFile" 2>&1
+  git pull >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
 fi
 check_status
 # build command if the build standard haven't builded yet.

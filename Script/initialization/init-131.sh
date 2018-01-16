@@ -1,18 +1,38 @@
 #!/bin/bash
+
 settingFile=../setting.conf
 logFile=result.log
 
-. ../checkSystem.sh
 . $settingFile
+. ../checkSystem.sh
 
-GIT_URL_131="https://github.com/vinaas/easyquiz-cms.git"
-USER_ID=$1
+FULL_GIT_HTTP_URL="${GIT_HTTP_URL:0:8}$USERNAME:$PASSWORD@${GIT_HTTP_URL:8}"
+REPO_NAME_WITH_DOT_GIT=`basename "$FULL_GIT_HTTP_URL"`
+REPO_NAME="${REPO_NAME_WITH_DOT_GIT:0:-4}"
+
+#current folder which contain this script.
 currentFolder=`pwd`
 
 #create folder log. The subfolder is by userID.
-mkdir -p "$currentFolder/log/$USER_ID"
+mkdir -p log
+cd log
+#create subfolder by userID
+USER_ID=$1
+mkdir -p $USER_ID
 
+cd $currentFolder
 # clone repo
-git clone --progress $GIT_URL_131 > "$currentFolder/log/$USER_ID/$logFile" 2>&1
-check_status
+git clone --progress $FULL_GIT_HTTP_URL >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
+if [ $? -eq 128 ]; then
+  git pull >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
+fi
+cd $repoName
 
+# create and clone gh-pages branch
+mkdir -p $buildFolder
+cd $buildFolder
+git clone --progress -b gh-pages $FULL_GIT_HTTP_URL >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
+if [ $? -eq 128 ]; then
+  git pull  >> "$currentFolder/log/$USER_ID/$logFile" 2>&1
+fi
+check_status
