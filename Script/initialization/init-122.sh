@@ -1,4 +1,5 @@
 #!/bin/bash
+SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScipt/Script"
 settingFile=$SCRIPT_FOLDER_PATH/setting.conf
 logFile=result.log
 USER_ID=$1
