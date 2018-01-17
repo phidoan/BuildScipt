@@ -22,7 +22,7 @@ check_status
 #npm -version
 #check_status
 
-if [ $2 -gt 0 ]; then
+if [ $CHECK_SYSTEM -gt 0 ]; then
    docker version
    check_status
 fi
