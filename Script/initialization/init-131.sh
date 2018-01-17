@@ -22,15 +22,15 @@ cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE
 # clone repo
 git clone --progress $FULL_GIT_HTTP_URL >> "$USER_LOG_PATH/$logFile" 2>&1
 if [ $? -eq 128 ]; then
+  cd $REPO_NAME
   git pull >> "$USER_LOG_PATH/$logFile" 2>&1
 fi
-cd $repoName
 
 # create and clone gh-pages branch
-mkdir -p $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$buildFolder
-cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$buildFolder
+mkdir -p $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$REPO_NAME/$buildFolder
+cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$REPO_NAME/$buildFolder
 git clone --progress -b gh-pages $FULL_GIT_HTTP_URL >> "$USER_LOG_PATH/$logFile" 2>&1
 if [ $? -eq 128 ]; then
+  cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$REPO_NAME/$buildFolder
   git pull  >> "$USER_LOG_PATH/$logFile" 2>&1
-  exit 0
 fi
