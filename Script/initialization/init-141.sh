@@ -1,7 +1,11 @@
 #!/bin/bash
+
+#----------------------------------------------------------------
+SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScript/Script"
+#----------------------------------------------------------------
+
 settingFile=$SCRIPT_FOLDER_PATH/setting.conf
 logFile=result.log
-USER_ID=$1
 
 . $settingFile
 . $SCRIPT_FOLDER_PATH/checkSystem.sh
@@ -18,14 +22,11 @@ cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE
 # call api to get docker file.
 git clone --progress -b master $FULL_GIT_HTTP_URL_APILOOKUP >> "$USER_LOG_PATH/$logFile" 2>&1
 if [ $? -eq 128 ]; then
-  git pull
+  git pull >> "$USER_LOG_PATH/$logFile" 2>&1
 fi
-check_status
 
 cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$REPO_NAME/backend
 #build system
 npm install >> "$USER_LOG_PATH/$logFile" 2>&1
-check_status
 
 nodejs .
-check_status

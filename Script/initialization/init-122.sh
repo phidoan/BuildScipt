@@ -1,11 +1,15 @@
 #!/bin/bash
-SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScipt/Script"
+
+#----------------------------------------------------------------
+SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScript/Script"
+#----------------------------------------------------------------
+
 settingFile=$SCRIPT_FOLDER_PATH/setting.conf
 logFile=result.log
-USER_ID=$1
 # read file setting.conf
 . $settingFile
 . $SCRIPT_FOLDER_PATH/checkSystem.sh
+
 
 FULL_GIT_HTTP_URL_CMS="${FULL_GIT_HTTP_URL_CMS:0:8}$USERNAME:$PASSWORD@${FULL_GIT_HTTP_URL_CMS:8}"
 REPO_NAME_WITH_DOT_GIT=`basename "$FULL_GIT_HTTP_URL_CMS"`

@@ -1,7 +1,11 @@
 #!/bin/bash
+
+#----------------------------------------------------------------
+SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScript/Script"
+#----------------------------------------------------------------
+
 settingFile=$SCRIPT_FOLDER_PATH/setting.conf
 logFile=result.log
-USER_ID=$1
 
 . $settingFile
 . $SCRIPT_FOLDER_PATH/checkSystem.sh
@@ -23,10 +27,10 @@ fi
 cd $repoName
 
 # create and clone gh-pages branch
-mkdir -p cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$buildFolder
+mkdir -p $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$buildFolder
 cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$buildFolder
 git clone --progress -b gh-pages $FULL_GIT_HTTP_URL >> "$USER_LOG_PATH/$logFile" 2>&1
 if [ $? -eq 128 ]; then
   git pull  >> "$USER_LOG_PATH/$logFile" 2>&1
+  exit 0
 fi
-check_status
