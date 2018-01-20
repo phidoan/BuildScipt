@@ -6,4 +6,3 @@ SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScript/Script"
 #### File Setting.conf:
 + USER_ID= 
 
-
