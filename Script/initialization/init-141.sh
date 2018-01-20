@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #----------------------------------------------------------------
-SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScript/Script"
+#SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScript/Script"
 #----------------------------------------------------------------
 
 settingFile=$SCRIPT_FOLDER_PATH/setting.conf
@@ -18,7 +18,7 @@ REPO_NAME="${REPO_NAME_WITH_DOT_GIT:0:-4}"
 USER_LOG_PATH=$SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/log/$USER_ID
 mkdir -p $USER_LOG_PATH
 
-cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE
+cd $SOURCE_FOLDER_PATH/$USER_ID/$WEBSITE_NAME
 # call api to get docker file.
 git clone --progress -b master $FULL_GIT_HTTP_URL_APILOOKUP >> "$USER_LOG_PATH/$logFile" 2>&1
 if [ $? -eq 128 ]; then
@@ -26,7 +26,7 @@ if [ $? -eq 128 ]; then
   git pull --progress $GIT_REMOTE_API >> "$USER_LOG_PATH/$logFile" 2>&1
 fi
 
-cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/$REPO_NAME/backend
+cd $SOURCE_FOLDER_PATH/$USER_ID/$WEBSITE_NAME/$REPO_NAME/backend
 #build system
 npm install >> "$USER_LOG_PATH/$logFile" 2>&1
 

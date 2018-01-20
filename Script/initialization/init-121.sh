@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #----------------------------------------------------------------
-SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScript/Script"
+#SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScript/Script"
 #----------------------------------------------------------------
 
 settingFile=$SCRIPT_FOLDER_PATH/setting.conf
@@ -20,10 +20,9 @@ USER_LOG_PATH=$SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/log/$USER_ID
 mkdir -p $USER_LOG_PATH
 
 
-cd $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE
+cd $SOURCE_FOLDER_PATH/$USER_ID/$WEBSITE_NAME
 git clone --progress -b gh-pages $FULL_GIT_HTTP_URL_CMS >> "$USER_LOG_PATH/$logFile" 2>&1
 if [ $? -eq 128 ]; then
   cd $REPO_NAME
   git pull --progress $GIT_REMOTE_CMS >> "$USER_LOG_PATH/$logFile" 2>&1
 fi
-# build command if the build standard haven't builded yet.
