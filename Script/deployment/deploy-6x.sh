@@ -1,13 +1,20 @@
-DOMAIN_CNAME=$1
-FILE_CNAME=$2
-GIT_REMOTE=${3:-origin}
-GIT_BRANCH=${4:-master}
+#!/bin/bash
+
+#----------------------------------------------------------------
+#SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScript/Script"
+#----------------------------------------------------------------
+
+settingFile=$SETTING_CONFIG_FILE_FULL_PATH
+logFile=result.log
+. $settingFile
+
+CNAME_PATH=${CNAME_PATH:-`pwd`}
 
 function updateCNAME() {
-	echo "$DOMAIN_CNAME" > CNAME
-	git add $GIT_REMOTE CNAME
-	git commit -m $GIT_REMOTE "update CNAME to $DOMAIN_CNAME"
-	git push --progress $GIT_REMOTE $GIT_BRANCH >> "$USER_LOG_PATH/$logFile" 2>&1
+	echo "$CNAME_DOMAIN" > CNAME
+	git add CNAME
+	git commit -m "update CNAME to $CNAME_DOMAIN"
+	git push --progress $GIT_REMOTE HEAD:$GIT_BRANCH >> "$USER_LOG_PATH/$logFile" 2>&1
 }
 
 updateCNAME
