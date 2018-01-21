@@ -23,7 +23,7 @@ git push --progress $GIT_REMOTE_CLIENT master >> "$USER_LOG_PATH/$logFile" 2>&1
 #create CNAME and push to github pages
 FILE_CNAME=$SOURCE_FOLDER_PATH/$USER_ID/$WEBSITE_NAME/$buildFolder
 #format {PROJECTNAME}.{ACCOUNT}.easywebhub.me
-. $SCRIPT_FOLDER_PATH/$FOLDER_DEPLOYMENT/deloy-6x.sh "$WEBSITE_NAME.$USER_ID.$DOMAIN" $FILE_CNAME $GIT_REMOTE_CLIENT
+. $SCRIPT_FOLDER_PATH/$FOLDER_DEPLOYMENT/deloy-6x.sh
 
 
 

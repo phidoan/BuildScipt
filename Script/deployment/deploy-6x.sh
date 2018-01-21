@@ -8,7 +8,13 @@ settingFile=$SETTING_CONFIG_FILE_FULL_PATH
 logFile=result.log
 . $settingFile
 
-CNAME_PATH=${CNAME_PATH:-`pwd`}
+#create folder log
+USER_LOG_PATH=$SCRIPT_FOLDER_PATH/$FOLDER_DEPLOYMENT/log/$USER_ID
+mkdir -p $USER_LOG_PATH
+
+GIT_REMOTE=$CNAME_GIT_ROMOTE_DEMO
+GIT_BRANCH=$CNAME_GIT_BRANCH_DEMO
+
 
 function updateCNAME() {
 	echo "$CNAME_DOMAIN" > CNAME
