@@ -12,7 +12,7 @@ logFile=result.log
 . $SCRIPT_FOLDER_PATH/$FOLDER_INITIATE/int-131.sh
 
 #run script npm or node in here
-cd $SOURCE_FOLDER_PATH/$USER_ID/$WEBSITE_NAME/$REPO_NAME
 if [ $? -gt 0 ]; then
+	cd $SOURCE_FOLDER_PATH/$USER_ID/$WEBSITE_NAME/$REPO_NAME
 	npm start
 if

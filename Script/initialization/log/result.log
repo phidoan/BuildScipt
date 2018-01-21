@@ -1,4 +1,0 @@
-Cloning into 'test-aaa-bash-repo'...
-remote: Invalid username or password.
-fatal: Authentication failed for 'https://user:pass@github.com/asv/test-aaa-bash-repo.git/'
-fatal: destination path '.' already exists and is not an empty directory.

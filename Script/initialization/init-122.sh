@@ -4,7 +4,7 @@
 #SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScript/Script"
 #----------------------------------------------------------------
 
-settingFile=SETTING_CONFIG_FILE_FULL_PATH
+settingFile=$SETTING_CONFIG_FILE_FULL_PATH
 logFile=result.log
 # read file setting.conf
 . $settingFile
