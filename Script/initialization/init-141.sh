@@ -24,7 +24,7 @@ cd $SOURCE_FOLDER_PATH/$USER_ID/$WEBSITE_NAME
 git clone --progress -b master $FULL_GIT_HTTP_URL_APILOOKUP >> "$USER_LOG_PATH/$logFile" 2>&1
 if [ $? -eq 128 ]; then
   cd $REPO_NAME
-  git pull --progress $GIT_REMOTE_API >> "$USER_LOG_PATH/$logFile" 2>&1
+  git pull --progress $GIT_REMOTE_APILOOKUP >> "$USER_LOG_PATH/$logFile" 2>&1
 fi
 
 cd $SOURCE_FOLDER_PATH/$USER_ID/$WEBSITE_NAME/$REPO_NAME/backend
