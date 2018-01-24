@@ -28,3 +28,7 @@ fi
 #run npm install and node index.js then remember change somethings in config.js
 npm install
 node index.js
+
+# cmd curl for event of webhook.. param in config.js of GIT_HTTP_URL_WEBHOOK
+#curl -i POST -H "X-GitHub-Event:pull_request; X-GitHub-Delivery:1bcae6b0-0061-11e8-87f2-63418365c7ad ;X-Hub-Signature:sha1=00a6e2b6a21854772dc3e82297b7612c6346dfbc" http://103.199.18.44:8001/web-hook
+
