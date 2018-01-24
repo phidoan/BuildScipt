@@ -1,16 +1,8 @@
 #### Cách chạy các file init-*.
-webwebwebwbebwebwbebwbebwbebwbebwbebwe
-sadsadasda
-#### run ./init-*.shdsadsasa=====locallocallocal
-sadsad
-=====locallocallocalsadsad
+#### run ./init-*.shdsadsasa
 Thiết lập đường dẫn đến folder ~~~ /BuildScript/Script trong docker container trong tường file Script sử dụng shell script hay code.sadsadsa
 SCRIPT_FOLDER_PATH="/var/jenkins_home/gitRepo/BuildScript/Script"dsadsa
 dsadasdassa
-sadasdaaaaaaaaaaaa=====locallocallocal
-sadsad
-#### File Setting.conf:dsadasdeeeeeeees
-asdddddddddd
-=====locallocallocal=====locallocallocal
+#### File Setting.conf:dsadasd
 + USER_ID= dsadas
 
