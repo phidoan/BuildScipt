@@ -1,7 +1,7 @@
 ﻿
 # XXXXXXXXXXThực hiện
 
-## WWWWWWWWWWWWWWInitlization (4 ngày)
+## WWWaWWWWWWWWWWWInitlization (4 ngày)
 xzczxzzz
 ### Ngày 1 script (101, 102) 
 
