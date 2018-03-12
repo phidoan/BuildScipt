@@ -1,21 +1,21 @@
 
 # Thực hiện
 
-## Initlization (4 ngày)
-
+## qqqqqqqqqqqqqqq (4 ngày)
+sssssssss
 ### Ngày 1 script (101, 102) 
-
+ssssssssssssssss
 - 101: [x], `trang-thai`, link file mô tả chi tiết, 
    - làm xong thì check vào ô vuông,  [x] 
 - 102: [ ], tương tự trên
 fdsfdsf
 ### Ngày 2 script (121, 131, 141)
 - tương tự trên 
-
+ssssssssssssssssss
 ### Ngày 3 script (122, 132, 142)	
-
-### Ngày 4: testing và releasedsfdsf
-
+sssssssssssssss
+### Ngày 4: sssssssssssssssstesting và releasedsfdsf
+sssssssssssss
 ## Syncdsfdsfsdfhronization ( 4 ngày )	
 script (20, 21, 40)	script (30, 32)	script (31, 33, 41)	testing và release
 ssssfff
